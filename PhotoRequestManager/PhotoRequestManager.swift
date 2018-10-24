@@ -61,8 +61,8 @@ final class PhotoRequestManager: NSObject, UIImagePickerControllerDelegate, UINa
 
 // MARK: - UIImagePickerControllerDelegate
 extension PhotoRequestManager {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
         picker.dismiss(animated: true) { [unowned self] in
             self.completionHandler?(PhotoRequestResult.success(image))
             self.completionHandler = nil
